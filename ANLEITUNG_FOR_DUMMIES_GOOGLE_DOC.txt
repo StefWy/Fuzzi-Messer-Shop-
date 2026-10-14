@@ -1,0 +1,358 @@
+================================================================================
+KLINGENWERK WEBSHOP - STEP-BY-STEP ANLEITUNG FÜR EINSTEIGER ("FOR DUMMIES")
+Leitfaden zum nachträglichen Individualisieren von Texten, Bildern, Produkten & Rechtstexten
+Format: Bereit zum 1:1 Kopieren in Google Docs / Word / Text-Editor
+================================================================================
+
+Herzlich willkommen zu Ihrer persönlichen Shop-Anleitung!
+Mit dieser Anleitung können Sie alle Texte, Bilder, Produkte, Preise, Rabattcodes 
+und Impressumsdaten Ihres Webshops ganz einfach anpassen – auch wenn Sie noch 
+nie zuvor programmiert haben.
+
+WICHTIGE GRUNDREGEL ("DAMIT NICHTS KAPUTTGEHT"):
+1. Achten Sie auf Anführungszeichen: Texte stehen immer in einfachen Anführungszeichen 
+   wie 'Mein Text' oder doppelten wie "Mein Text". Löschen Sie diese Anführungszeichen nicht.
+2. Achten Sie auf Kommas: Am Ende von Zeilen in Listen steht meist ein Komma (,). 
+   Lassen Sie dieses Komma stehen.
+3. Nach jeder Änderung im Code: Speichern Sie die Datei (Strg + S bzw. Cmd + S). 
+   Der Shop aktualisiert sich sofort.
+
+--------------------------------------------------------------------------------
+INHALTSVERZEICHNIS
+--------------------------------------------------------------------------------
+1. Wo liegen die Dateien? (Schnelle Orientierung im Projekt)
+2. Impressum, Anschrift & Kontaktdaten anpassen
+3. AGB, Haftungsausschluss & Widerrufsbelehrung anpassen
+4. Eigene Bilder einfügen (Messer-Fotos, Banner, Logo)
+5. Produkte bearbeiten, neue Messer hinzufügen oder löschen
+6. Preise, Rabatte & Freiversand-Grenzen ändern
+7. Blog-Artikel anpassen & eigene Beiträge schreiben
+8. Farben, Schriften & Hintergrund anpassen
+9. Deployment auf GitHub & Render.com (In 3 Minuten online)
+10. Checkliste vor dem ersten echten Verkauf
+
+================================================================================
+KAPITEL 1: WO LIEGEN DIE DATEIEN? (SCHNELLE ORIENTIERUNG)
+================================================================================
+Sie müssen für 95% aller Anpassungen nur 3 Dateien kennen:
+
+1. Rechtstexte & Impressum:
+   --> Datei: src/data/legalTexts.ts
+
+2. Alle Messer, Zubehör & Preise:
+   --> Datei: src/data/products.ts
+
+3. Die 10 Blog-Artikel:
+   --> Datei: src/data/blogArticles.ts
+
+4. Gutscheincodes & Rabattlogik:
+   --> Datei: src/context/ShopContext.tsx
+
+5. Eigene Bilder ablegen unter:
+   --> Ordner: src/assets/images/
+
+================================================================================
+KAPITEL 2: IMPRESSUM, ANSCHRIFT & KONTAKTDATEN ANPASSEN
+================================================================================
+Aktuell sind im Impressum Platzhalter ("Musterstraße", "Max Mustermann") hinterlegt.
+So tragen Sie Ihre echten Firmendaten ein:
+
+Schritt 1: Öffnen Sie die Datei:
+src/data/legalTexts.ts
+
+Schritt 2: Suchen Sie mit Strg+F nach:
+impressum: {
+
+Schritt 3: Ändern Sie die Zeilen wie im folgenden Beispiel:
+
+VORHER (Muster):
+--------------------------------------------------------------------------------
+    {
+      title: 'Angaben gemäß § 5 TMG',
+      content: [
+        'KlingenWerk Manufaktur E-Commerce',
+        'Inhaber: [Vorname Nachname / Firmenname eintragen]',
+        'Straße und Hausnummer: [Musterstraße 123]',
+        'PLZ und Ort: [12345 Musterstadt]',
+        'Land: Deutschland'
+      ]
+    },
+    {
+      title: 'Kontakt & Kundenservice',
+      content: [
+        'Telefon: [+49 (0) 123 4567890]',
+        'E-Mail: [info@ihre-messer-domain.de]',
+        'Webseite: [https://www.ihre-messer-domain.de]'
+      ]
+    },
+--------------------------------------------------------------------------------
+
+NACHHER (Ihr echtes Impressum):
+--------------------------------------------------------------------------------
+    {
+      title: 'Angaben gemäß § 5 TMG',
+      content: [
+        'KlingenWerk Manufaktur E-Commerce',
+        'Inhaber: Markus Schmidt',
+        'Hauptstraße 48',
+        '42651 Solingen',
+        'Deutschland'
+      ]
+    },
+    {
+      title: 'Kontakt & Kundenservice',
+      content: [
+        'Telefon: +49 (0) 212 987654',
+        'E-Mail: info@klingenwerk-shop.de',
+        'Webseite: https://klingenwerk-shop.de'
+      ]
+    },
+--------------------------------------------------------------------------------
+
+TIPP FÜR WEITERE ANGABEN (Registergericht & USt-IdNr.):
+Scrollen Sie in derselben Datei ein paar Zeilen weiter nach unten. Dort finden Sie:
+'Umsatzsteuer-Identifikationsnummer: [DE999999999]'
+Ersetzen Sie einfach DE999999999 durch Ihre echte USt-IdNr. (oder löschen Sie die 
+Zeile, falls Sie Kleinunternehmer nach § 19 UStG sind).
+
+================================================================================
+KAPITEL 3: AGB, HAFTUNGSAUSSCHLUSS & WIDERRUFSBELEHRUNG
+================================================================================
+Die Rechtstexte in src/data/legalTexts.ts sind bereits fachgerecht nach deutschem 
+Recht formuliert und enthalten den von Ihnen gewünschten maximalen Haftungsausschluss 
+für den Händler:
+- Haftungsausschluss bei unsachgemäßem Gebrauch (Zweckentfremdung als Hebelwerkzeug)
+- Haftungsausschluss bei fehlerhaftem Nachschleifen durch den Kunden
+- Haftungsausschluss bei eigenmächtigen Modifikationen
+- Altersprüfung (Verkauf nur ab 18 Jahren)
+- Hinweis zum § 42a Waffengesetz (Führverbot bestimmter Klingen in der Öffentlichkeit)
+- Gesetzlicher Ausschluss des Widerrufsrechts bei kundenspezifischer Lasergravur (§ 312g Abs. 2 Nr. 1 BGB)
+
+Wenn Sie den Firmennamen oder Garantiebedingungen anpassen möchten:
+1. Öffnen Sie src/data/legalTexts.ts
+2. Suchen Sie nach agb: {
+3. Ändern Sie Texte innerhalb der einfachen Anführungszeichen 'Hier steht Ihr Text'.
+
+================================================================================
+KAPITEL 4: EIGENE BILDER EINFÜGEN (MESSER, BANNER, FOTOS)
+================================================================================
+Sie möchten eigene Produktfotos oder Bilder von Ihrer Werkstatt einbinden?
+
+Schritt 1: Bild vorbereiten
+- Format: .jpg, .png oder .webp
+- Optimale Auflösung: ca. 1200 x 900 Pixel (Dateigröße unter 500 KB für beste Ladezeit)
+- Dateiname ohne Umlaute und ohne Leerzeichen, z.B. mein_santoku.jpg
+
+Schritt 2: Bild in den Ordner kopieren
+Legen Sie Ihre Bilddatei in diesen Ordner des Projekts:
+src/assets/images/mein_santoku.jpg
+
+Schritt 3: Bild im Code bekannt machen (Importieren)
+Öffnen Sie src/data/products.ts.
+Ganz oben (Zeile 3 bis 15) sehen Sie Zeilen wie:
+import heroChefKnife from '../assets/images/hero_damascus_chefknife_1791981974182.jpg';
+
+Fügen Sie direkt darunter Ihre neue Bildzeile ein:
+import meinNeuesSantokuBild from '../assets/images/mein_santoku.jpg';
+
+Schritt 4: Dem Produkt das Bild zuweisen
+Suchen Sie in src/data/products.ts das gewünschte Produkt und ändern Sie die 
+image-Zeile:
+
+VORHER:
+image: heroChefKnife,
+
+NACHHER:
+image: meinNeuesSantokuBild,
+
+Fertig! Schon erscheint Ihr eigenes Bild im Shop.
+
+================================================================================
+KAPITEL 5: PRODUKTE BEARBEITEN, HINZUFÜGEN ODER LÖSCHEN
+================================================================================
+Alle Messer und Zubehörartikel befinden sich zentral in:
+src/data/products.ts
+
+Ein Produkt sieht im Code so aus:
+
+--------------------------------------------------------------------------------
+  {
+    id: 'chef-damast-67-walnut',
+    name: 'Meister-Kochmesser 67 Lagen Damast',
+    subtitle: 'Japanischer VG-10 Stahlkern · Ovale Walnussholz-Zwinge',
+    category: 'kuechenmesser',
+    subcategoryLabel: 'Kochmesser',
+    price: 189.00,
+    originalPrice: 229.00,
+    rating: 4.95,
+    reviewCount: 48,
+    stockCount: 4,
+    isBestseller: true,
+    isNew: false,
+    image: heroChefKnife,
+    description: 'Das Flaggschiff für anspruchsvolle Gourmets und Profiköche...',
+    features: [
+      '67 Lagen rostfreier Damaszener-Stahl mit VG-10 Hochleistungskern',
+      'Härtegrad 61-62 Rockwell für exzeptionelle Schnitthaltigkeit',
+      'Traditioneller beidseitiger 15°-Meisterschliff (Honbazuke)'
+    ],
+    specs: {
+      bladeSteel: 'VG-10 Damaststahl (67 Lagen)',
+      hardnessHRC: 61,
+      bladeLengthCm: 20.5,
+      totalLengthCm: 33.5,
+      bladeThicknessMm: 2.2,
+      handleMaterial: 'Stabilisiertes Walnussholz & Büffelhorn',
+      weightGrams: 215,
+      grindType: '15° V-Schliff (Honbazuke Handabzug)',
+      origin: 'Seki, Japan / Endfinish Solingen'
+    }
+  },
+--------------------------------------------------------------------------------
+
+SO PASSEN SIE EIN PRODUKT AN:
+1. Preis ändern: 
+   Ändern Sie einfach die Zahl: price: 149.00, (immer mit Punkt statt Komma schreiben!).
+2. Originalpreis (Streichpreis) ändern: 
+   originalPrice: 199.00, (oder weglassen, wenn kein Rabatt angezeigt werden soll).
+3. Name ändern: 
+   name: 'Mein Wunsch-Messer Name',
+4. Klingenstahl oder Härtegrad ändern: 
+   hardnessHRC: 60,
+   bladeSteel: 'D2 Werkzeugstahl',
+5. Lagerbestand (Knappheits-Anzeige) ändern: 
+   stockCount: 3, (bei Werten unter 5 zeigt der Shop automatisch "Nur noch X Stück vorrätig!").
+
+WIE FÜGE ICH EIN GANZ NEUES PRODUKT HINZU?
+Kopieren Sie einfach einen bestehenden Produktblock von geschweifter Klammer { 
+bis geschweifter Klammer mit Komma }, fügen Sie ihn ans Ende der Liste ein und 
+vergeben Sie eine neue, einmalige id (z.B. id: 'mein-neues-messer').
+
+WIE LÖSCHE ICH EIN PRODUKT?
+Löschen Sie einfach den entsprechenden Block von { bis }, aus der Datei.
+
+================================================================================
+KAPITEL 6: PREISE, RABATTE & FREIVERSAND-GRENZEN ÄNDERN
+================================================================================
+
+1. WILLKOMMENS-GUTSCHEIN (z.B. SCHAERFE10 mit 10% Rabatt):
+Öffnen Sie: src/context/ShopContext.tsx
+Suchen Sie nach: applyCoupon
+Dort steht:
+--------------------------------------------------------------------------------
+  const applyCoupon = (code: string): boolean => {
+    const clean = code.trim().toUpperCase();
+    if (clean === 'SCHAERFE10') {
+      setCouponCode('SCHAERFE10');
+      setDiscountPercentage(10); // <-- Hier Prozentsatz ändern (z.B. 15 für 15%)
+      showToast('Gutscheincode SCHAERFE10 aktiviert: 10% Rabatt!', 'success');
+      return true;
+    }
+    // ...
+  };
+--------------------------------------------------------------------------------
+Möchten Sie einen weiteren Code hinzufügen (z.B. SOMMER20 für 20%)?
+Ergänzen Sie einfach:
+    if (clean === 'SOMMER20') {
+      setCouponCode('SOMMER20');
+      setDiscountPercentage(20);
+      showToast('Gutscheincode SOMMER20 aktiviert: 20% Rabatt!', 'success');
+      return true;
+    }
+
+2. KOSTENLOSER VERSAND (AKTUELL AB 50 €):
+Möchten Sie die Schwelle für den kostenlosen DHL-Versand auf z.B. 70 € setzen?
+Ändern Sie in folgenden zwei Dateien den Wert 50.0 auf 70.0:
+- src/components/CartDrawer.tsx (Zeile ca. 35: const FREE_SHIPPING_THRESHOLD = 70.0;)
+- src/components/CheckoutModal.tsx (Zeile ca. 54: const FREE_SHIPPING = cartSubtotal >= 70.0;)
+
+================================================================================
+KAPITEL 7: BLOG-ARTIKEL ANPASSEN & NEUE BEITRÄGE SCHREIBEN
+================================================================================
+Die 10 suchmaschinenoptimierten Fachartikel (je ca. 1500 Zeichen mit Meta-Tags, 
+Keywords, Verkaufspsychologie und Handlungsempfehlungen) befinden sich in:
+src/data/blogArticles.ts
+
+Ein Artikel ist wie folgt aufgebaut:
+- id: Eindeutige ID (z.B. 'damastmesser-pflege-schleiftechnik')
+- title: Die Überschrift des Beitrags
+- metaTitle: Der optimierte Google-Titel (unter 65 Zeichen)
+- metaDescription: Der Google-Suchergebnistext (unter 160 Zeichen mit Call-to-Action)
+- primaryKeywords: Liste von Google-Suchbegriffen, z.B. ['Damastmesser Pflege', 'Schleifstein']
+- intro: Einleitender Absatz (fesselt den Leser)
+- keyTakeaways: 3 bis 4 Kernaussagen in einer praktischen Merk-Box
+- contentSections: Die Hauptkapitel des Artikels mit Zwischenüberschriften
+- psychologicalTrigger: Der verkaufspsychologische Block am Beitragsende, der 
+  subtil ein passendes Messer aus dem Shop empfiehlt und zum Kauf anregt.
+
+Möchten Sie Text in einem Artikel ändern, suchen Sie den Titel in 
+src/data/blogArticles.ts und überschreiben Sie einfach den Text zwischen 
+den Anführungszeichen.
+
+================================================================================
+KAPITEL 8: FARBEN, SCHRIFTEN & HINTERGRUND ANPASSEN
+================================================================================
+Der Shop nutzt Tailwind CSS und eine augenfreundliche Leinen-Creme-Palette.
+
+Hintergrundfarbe ändern:
+Öffnen Sie src/index.css:
+body {
+  background-color: #faf9f5; /* warmes, augenschonendes Leinen-Creme */
+  color: #1c1917; /* tiefes Graphitgrau für beste Lesbarkeit */
+}
+
+Möchten Sie den Hintergrund noch heller (Reinweiß)? 
+Ändern Sie #faf9f5 zu #ffffff.
+Möchten Sie einen wärmeren Sandton? 
+Ändern Sie #faf9f5 zu #f7f5ee.
+
+Akzentfarbe ändern (Buttons & Badges):
+Alle Hauptbuttons nutzen den Tailwind-Farbton amber-600 (ein warmer Bernsteinton, 
+passend zu Messerschmiede und Holz).
+Suchen Sie im Code nach: bg-amber-600 hover:bg-amber-700
+Wenn Sie stattdessen z.B. edles Schwarz/Graphit möchten, ersetzen Sie es durch:
+bg-stone-900 hover:bg-stone-800
+
+================================================================================
+KAPITEL 9: DEPLOYMENT AUF GITHUB & RENDER.COM (IN 3 MINUTEN ONLINE)
+================================================================================
+Ihr Webshop ist so programmiert, dass er ohne komplizierte Server-Konfiguration 
+vollautomatisch bei Render.com online gehen kann:
+
+SCHRITT 1: Code auf GitHub laden
+1. Erstellen Sie ein kostenloses Konto auf https://github.com
+2. Erstellen Sie ein neues Repository (z.B. "klingenwerk-shop")
+3. Laden Sie die Dateien hoch oder verbinden Sie Ihr Git-Tool.
+
+SCHRITT 2: Bei Render.com veröffentlichen
+1. Erstellen Sie ein kostenloses Konto auf https://render.com
+2. Klicken Sie oben rechts auf den blauen Button: "New +" -> "Static Site"
+3. Verbinden Sie Ihr GitHub-Konto und wählen Sie das Repository "klingenwerk-shop".
+4. Tragen Sie exakt diese Einstellungen ein:
+   - Name: klingenwerk (oder Ihr Wunschname)
+   - Branch: main
+   - Build Command: npm run build
+   - Publish Directory: dist
+5. Klicken Sie ganz unten auf: "Create Static Site".
+
+FERTIG!
+Render baut Ihre Website innerhalb von ca. 60 Sekunden.
+Sie erhalten eine kostenlose Web-Adresse (z.B. https://klingenwerk.onrender.com) 
+inklusive automatischem SSL-Sicherheitszertifikat (grünes Schloss / HTTPS).
+Später können Sie in Render mit wenigen Klicks Ihre eigene Domain (z.B. www.mein-messer-shop.de) 
+aufschalten!
+
+================================================================================
+KAPITEL 10: CHECKLISTE VOR DEM ERSTEN ECHTEN VERKAUF
+================================================================================
+[ ] Echte Daten im Impressum hinterlegt (Name, Adresse, E-Mail, Telefon in src/data/legalTexts.ts)
+[ ] Bankdaten / Zahlungsanbieter-Links (PayPal, Stripe) im Checkout hinterlegt
+[ ] Eigene Produktpreise und Produktbeschreibungen überprüft
+[ ] Versandkosten und Freiversandgrenze kontrolliert (z.B. 50 €)
+[ ] Willkommens-Gutscheincode getestet (Gutscheinfeld im Warenkorb: SCHAERFE10)
+[ ] Test-Bestellung im Shop durchgeführt (Warenkorb -> Kasse -> Bestellung abschließen)
+[ ] Eigene Domain auf Render.com hinterlegt
+
+Herzlichen Glückwunsch zu Ihrem professionellen Messer-Webshop!
+Bei Fragen können Sie dieses Dokument jederzeit als Referenz nutzen.
+================================================================================

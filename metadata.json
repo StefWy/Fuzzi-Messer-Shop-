@@ -1,0 +1,6 @@
+{
+  "name": "KlingenWerk Manufaktur",
+  "description": "High-Performance Premium Messer Onlineshop & Fachblog für Damastmesser, Küchen-, Outdoor-, Schnitzmesser und Schleifkunst.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
